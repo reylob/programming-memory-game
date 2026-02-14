@@ -1,0 +1,11 @@
+.filters{
+  display:flex;
+  align-items:flex-end;
+  gap: 12px;
+  padding: 12px 18px 10px;
+  flex-wrap:wrap;
+}
+
+.field.inline label{ margin-bottom:6px; }
+
+#leaderboardCard .list{ padding-top: 0; }

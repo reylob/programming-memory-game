@@ -1,0 +1,22 @@
+/* Confetti */
+.confetti {
+  position: fixed;
+  inset: -20px 0 auto 0;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+.confetti i {
+  position: absolute;
+  top: -20px;
+  border-radius: 3px;
+  opacity: 0.95;
+  animation: confetti-fall 900ms linear forwards;
+  transform: translateY(0) rotate(0deg);
+}
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0.85;
+  }
+}

@@ -1,0 +1,102 @@
+/* Ambient background layer */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+}
+.blob{
+  position:absolute;
+  filter: blur(40px);
+  opacity:0.75;
+  transform: translate3d(0,0,0);
+}
+.blob.b1{
+  width:520px; height:520px;
+  left:-120px; top:-140px;
+  background: radial-gradient(circle at 30% 30%, rgba(124,92,255,0.95), rgba(124,92,255,0.0) 60%);
+}
+.blob.b2{
+  width:560px; height:560px;
+  right:-160px; top:-90px;
+  background: radial-gradient(circle at 30% 30%, rgba(56,189,248,0.85), rgba(56,189,248,0.0) 62%);
+}
+.grid{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity:0.22;
+  mask-image: radial-gradient(circle at 35% 10%, rgba(0,0,0,1), rgba(0,0,0,0) 62%);
+}
+
+/* Top app bar */
+.appbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:var(--gap);
+  padding:18px 20px;
+  backdrop-filter: blur(10px);
+  background: rgba(5,8,22,0.55);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.brand{ display:flex; align-items:center; gap:12px; }
+.logo{
+  width:44px; height:44px;
+  border-radius:16px;
+  display:grid; place-items:center;
+  font-weight:900;
+  letter-spacing:0.5px;
+  background: linear-gradient(135deg, rgba(124,92,255,0.95), rgba(56,189,248,0.85));
+  box-shadow: var(--shadow2);
+}
+.brandtext .title{ font-weight:900; font-size:1.05rem; line-height:1.1; }
+.brandtext .subtitle{ color:var(--muted); font-size:0.9rem; margin-top:2px; }
+
+.account{ display:flex; align-items:center; gap:10px; }
+.pill{
+  display:flex; align-items:center; gap:8px;
+  padding:10px 12px;
+  border-radius:999px;
+  background: rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+}
+.dot{
+  width:10px; height:10px; border-radius:99px;
+  background: rgba(255,255,255,0.35);
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.06);
+}
+
+/* Main container */
+.container{
+  max-width: 1100px;
+  margin: 22px auto 60px;
+  padding: 0 16px;
+}
+
+.panel{
+  border-radius: var(--r2);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+
+.panelHead{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: var(--gap);
+  padding: 18px 18px 0;
+}
+.panelHead h2{ margin:0; font-size:1.25rem; }
+.panelHead p{ margin:6px 0 0; }
+
+.actions{ display:flex; gap:10px; flex-wrap:wrap; }

@@ -1,0 +1,59 @@
+.playbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 12px;
+  padding: 16px 18px 10px;
+  flex-wrap:wrap;
+}
+
+/* Segmented control */
+.segmented{
+  display:flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+}
+.seg{
+  border:0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor:pointer;
+}
+.seg.active{
+  background: rgba(124,92,255,0.16);
+  border: 1px solid rgba(124,92,255,0.30);
+}
+
+.controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* Stats row */
+.statsRow{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 14px 18px 12px;
+}
+.stat{
+  border-radius: 18px;
+  padding: 12px 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+.stat.wide{ grid-column: span 1; }
+.k{ color: var(--muted); font-size: 0.86rem; }
+.v{ margin-top:6px; font-size:1.05rem; }
+.u{ color: var(--muted); margin-left:4px; }
+
+@media (max-width: 900px){
+  .statsRow{ grid-template-columns: repeat(2, 1fr); }
+}

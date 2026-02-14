@@ -1,0 +1,54 @@
+.quizCard{
+  margin: 0 18px 18px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.10);
+  padding: 14px;
+}
+
+.quizQ{
+  font-weight:900;
+  font-size:1.05rem;
+  margin-bottom: 12px;
+}
+
+.choices{
+  display:grid;
+  gap: 10px;
+}
+
+.choiceBtn{
+  width:100%;
+  text-align:left;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+}
+.choiceBtn:hover{ background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.20); }
+
+.choiceBtn:disabled{ opacity: 1; cursor: default; }
+
+.choiceBtn.correct{
+  border-color: rgba(42, 208, 125, 0.65) !important;
+  background: rgba(20, 80, 55, 0.35) !important;
+}
+.choiceBtn.wrong{
+  border-color: rgba(255, 107, 107, 0.65) !important;
+  background: rgba(120, 30, 40, 0.30) !important;
+}
+
+.quizFooter{
+  display:flex;
+  justify-content:flex-end;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+.quizActions{
+  margin-top: 12px;
+  display:flex;
+  justify-content:flex-start;
+  gap:10px;
+}

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Programming Memory Game</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <link rel="stylesheet" href="css/game.css" />
+    <link rel="stylesheet" href="css/memory.css" />
+    <link rel="stylesheet" href="css/quiz.css" />
+    <link rel="stylesheet" href="css/leaderboard.css" />
+    <link rel="stylesheet" href="css/effects.css" />
+
+</head>
+
+<body>
+    <!-- Ambient Background -->
+    <div class="bg">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="grid"></div>
+    </div>
+
+    <!-- App Shell -->
+    <header class="appbar">
+        <div class="brand">
+            <div class="logo">PM</div>
+            <div class="brandtext">
+                <div class="title">Programming Memory Game</div>
+                <div class="subtitle">Learn concepts through play</div>
+            </div>
+        </div>
+
+        <div class="account">
+            <div class="pill">
+                <span class="dot"></span>
+                <span id="userLabel">Not logged in</span>
+            </div>
+            <button id="logoutBtn" class="btn ghost" hidden type="button">Logout</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- AUTH CARD -->
+        <section class="panel" id="authCard">
+            <div class="panelHead">
+                <div>
+                    <h2>Welcome back</h2>
+                    <p class="muted">Sign in to save progress, scores, and rankings.</p>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="login" type="button">Login</button>
+                <button class="tab" data-tab="register" type="button">Register</button>
+            </div>
+
+            <div class="pane" id="loginPane">
+                <div class="field">
+                    <label>Email or School ID</label>
+                    <input id="loginId" placeholder="example@email.com or 2023-0001" />
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <input id="loginPw" type="password" placeholder="••••••••" />
+                </div>
+
+                <button id="loginBtn" class="btn primary" type="button">Login</button>
+            </div>
+
+            <div class="pane hidden" id="registerPane">
+                <div class="grid2">
+                    <div class="field">
+                        <label>School ID (optional)</label>
+                        <input id="regSchoolId" placeholder="2023-0001" />
+                    </div>
+                    <div class="field">
+                        <label>Name</label>
+                        <input id="regName" placeholder="Your name" />
+                    </div>
+                </div>
+
+                <div class="grid2">
+                    <div class="field">
+                        <label>Email (optional)</label>
+                        <input id="regEmail" placeholder="example@email.com" />
+                    </div>
+                    <div class="field">
+                        <label>Password</label>
+                        <input id="regPw" type="password" placeholder="Create a password" />
+                    </div>
+                </div>
+
+                <button id="registerBtn" class="btn primary" type="button">Create account</button>
+            </div>
+
+            <div id="authErr" class="notice error"></div>
+        </section>
+
+        <!-- GAME CARD -->
+        <section class="panel hidden" id="gameCard">
+            <div class="panelHead">
+                <div>
+                    <h2>Play</h2>
+                    <p class="muted">Switch modes anytime. Best-per-user leaderboard is enabled.</p>
+                </div>
+
+                <div class="actions">
+                    <button id="viewScoresBtn" class="btn ghost" type="button">My Scores</button>
+                    <button id="viewLeaderboardBtn" class="btn ghost" type="button">Leaderboard</button>
+                </div>
+            </div>
+
+            <!-- Mode Switch + Controls -->
+            <div class="playbar">
+                <div class="segmented" role="tablist" aria-label="Game mode">
+                    <button id="modeMemory" class="seg active" type="button">Memory</button>
+                    <button id="modeQuiz" class="seg" type="button">Quiz</button>
+                </div>
+
+                <div class="controls" id="memoryControls">
+                    <select id="difficulty" class="select">
+                        <option value="easy">Easy • 4x3</option>
+                        <option value="medium">Medium • 4x4</option>
+                        <option value="hard">Hard • 6x4</option>
+                    </select>
+                    <button id="startBtn" class="btn primary" type="button">Start</button>
+                </div>
+            </div>
+
+            <!-- MEMORY PANEL -->
+            <div id="memoryPanel">
+                <div class="statsRow">
+                    <div class="stat">
+                        <div class="k">Time</div>
+                        <div class="v"><b id="time">0</b><span class="u">s</span></div>
+                    </div>
+                    <div class="stat">
+                        <div class="k">Moves</div>
+                        <div class="v"><b id="moves">0</b></div>
+                    </div>
+                    <div class="stat">
+                        <div class="k">Matches</div>
+                        <div class="v"><b id="matches">0</b></div>
+                    </div>
+                    <div class="stat wide">
+                        <div class="k">Saved status</div>
+                        <div class="v"><span id="saveMsg" class="ok"></span></div>
+                    </div>
+                </div>
+
+                <div id="board" class="board"></div>
+            </div>
+
+            <!-- QUIZ PANEL -->
+            <div id="quizPanel" class="hidden">
+                <div class="statsRow">
+                    <div class="stat">
+                        <div class="k">Time</div>
+                        <div class="v"><b id="quizTime">0</b><span class="u">s</span></div>
+                    </div>
+                    <div class="stat">
+                        <div class="k">Question</div>
+                        <div class="v"><b id="quizQn">0</b><span class="u">/10</span></div>
+                    </div>
+                    <div class="stat">
+                        <div class="k">Score</div>
+                        <div class="v"><b id="quizScore">0</b></div>
+                    </div>
+                    <div class="stat wide">
+                        <div class="k">Result</div>
+                        <div class="v"><span id="quizMsg" class="ok"></span></div>
+                    </div>
+                </div>
+
+                <div class="quizCard">
+                    <div id="quizQuestion" class="quizQ">Press start to begin.</div>
+
+                    <!-- CHOICES -->
+                    <div id="quizChoices" class="choices"></div>
+
+                    <!-- FOOTER (Next button lives here, not inside choices) -->
+                    <div class="quizFooter">
+                        <button id="quizNextBtn" class="btn ghost" type="button" disabled>Next</button>
+                    </div>
+
+                    <div class="quizActions">
+                        <button id="quizStartBtn" class="btn primary" type="button">Start Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEADERBOARD -->
+        <section class="panel hidden" id="leaderboardCard">
+            <div class="panelHead">
+                <div>
+                    <h2>Leaderboard</h2>
+                    <p id="myRankLine" class="muted"></p>
+                </div>
+                <button id="backFromLeaderboard" class="btn ghost" type="button">Back</button>
+            </div>
+
+            <div class="filters">
+                <div class="field inline">
+                    <label>Difficulty</label>
+                    <select id="lbDifficulty" class="select">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="field inline">
+                    <label>Scope</label>
+                    <select id="lbScope" class="select">
+                        <option value="all">All-time</option>
+                        <option value="week">Last 7 days</option>
+                    </select>
+                </div>
+
+                <button id="refreshLeaderboard" class="btn ghost" type="button">Refresh</button>
+            </div>
+
+            <div id="leaderboardList" class="list"></div>
+        </section>
+
+        <!-- SCORES -->
+        <section class="panel hidden" id="scoresCard">
+            <div class="panelHead">
+                <div>
+                    <h2>My Scores</h2>
+                    <p class="muted">Your recent runs (Memory + Quiz).</p>
+                </div>
+                <button id="backToGame" class="btn ghost" type="button">Back</button>
+            </div>
+
+            <div id="scoresList" class="list"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="memory.js"></script>
+    <script src="quiz.js"></script>
+
+</body>
+
+</html>
